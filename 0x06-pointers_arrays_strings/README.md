@@ -8,3 +8,4 @@
 7-	Write a function that encodes a string into 1337.
 8-	Write a function that encodes a string using rot13.
 9-	Write a function that prints an integer.
+11-	Write a function that adds two numbers.
