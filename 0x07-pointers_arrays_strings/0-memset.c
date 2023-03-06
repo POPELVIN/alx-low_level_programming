@@ -1,33 +1,21 @@
+#include <stdio.h>
 #include "main.h"
 
 /**
- * *_memset - function declaration
- * @s: pointer to constant
- * @b: constant
- * @n: number of bytes
- * Return: pointer
- */
-
-char *_memset(char *s, char b, unsigned int n);
-
-/**
- * *_memset - function definition
- * @s: pointer to a constant
- * @b: constant to be used
- * @n: maximum number of bytes
- * Description: fills a memory address with constant byte
- * Return: pointer s
- */
+  * _memset - a function that fills memory with a constant byte.
+  * @s:pointer to the bytes of the memory area
+  * @b: constant byte
+  * @n:number of bytes of the memory area pointed to by s
+  * Return: pointer to the memory area s
+  */
 
 char *_memset(char *s, char b, unsigned int n)
 {
-	unsigned int index;
+	unsigned int m;
 
-	for (index = 0; n > 0; index++)
+	for (m = 0; m < n; m++)
 	{
-		s[index] = b;
-		n--;
+		s[m] = b;
 	}
-
 	return (s);
 }
