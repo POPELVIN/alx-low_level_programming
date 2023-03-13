@@ -4,7 +4,8 @@
 
 /**
  * main - check the code for ALX School students.
- *
+ * @ac: think of it as argc
+ * @av: think of it as argv
  * Return: Always 0.
  */
 int main(int ac, char *av[])
