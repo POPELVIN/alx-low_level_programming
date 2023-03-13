@@ -33,14 +33,14 @@ char *argstostr(int ac, char **av)
 		total_len += len + 1;
 	}
 
-	str = (char *) malloc(total_len * sizeof(char));
+	str =(char *) malloc(total_len * sizeof(char +1));
 	if (str == NULL)
 		return (NULL);
 
 	len = 0;
 	for (row = 0; row < ac; row++)
 	{
-		for (column = 0; av[row][column] != '\0'; column++)
+	for (column = 0; av[row][column] != '\0'; column++)
 		{
 			str[len++] = av[row][column];
 		}
