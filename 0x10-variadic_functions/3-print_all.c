@@ -1,91 +1,52 @@
-#include <stdarg.h>
-#include <stdlib.h>
 #include <stdio.h>
+#include <stdarg.h>
 #include "variadic_functions.h"
-/**
- * print_c - prints char
- * @a: list to give
- * Return: always 0
- */
-int print_c(va_list a)
-{
-	printf("%c", va_arg(a, int));
-	return (0);
-}
-/**
- * print_i - prints int
- * @a: list to give
- * Return: always 0
- */
-int print_i(va_list a)
-{
-	printf("%d", va_arg(a, int));
-	return (0);
-}
-/**
- * print_f - prints float
- * @a: list to give
- * Return: always 0
- */
-int print_f(va_list a)
-{
-	printf("%f", va_arg(a, double));
-	return (0);
-}
-/**
- * print_s - prints string
- * @a: list to give
- * Return: always 0
- */
-int print_s(va_list a)
-{
-	char *s;
 
-	s = va_arg(a, char *);
-	if (s == NULL)
-	{
-		printf("(nil)");
-		return (0);
-	}
-	printf("%s", s);
-	return (0);
-}
 /**
- * print_all - prints all
- * @format: format string that says arg types
- *
- */
+  * print_all - function that prints anything.
+  * @format:- type of the args passed
+  * Return:- Always 0 (success)
+  */
+
 void print_all(const char * const format, ...)
 {
-	int i, j;
-	char *sep = "";
-	char *sep2 = ", ";
-	va_list anyArgs;
-	printer ops[] = {
-		{"c", print_c},
-		{"i", print_i},
-		{"s", print_s},
-		{"f", print_f},
-		{NULL, NULL}
-	};
+	va_list ap;
+	int m = 0;
+	int n = 0;
 
-	va_start(anyArgs, format);
-	i = 0;
-	while (format != NULL && format[i])
+	char *spac = ", ";
+	char *str;
+
+	va_start(ap, format);
+
+	while (format[m] && format)
+		m++;
+
+	while (format[n] && format)
 	{
-		j = 0;
-		while (ops[j].f != NULL)
+		if (n == (m - 1))
+			spac = "";
+
+		switch (format[n])
 		{
-			if (format[i] == *(ops[j].c))
-			{
-				printf("%s", sep);
-				ops[j].f(anyArgs);
-			}
-			j++;
+			case 'c':
+				printf("%c%s", va_arg(ap, int), spac);
+				break;
+			case 'i':
+				printf("%d%s", va_arg(ap, int), spac);
+				break;
+			case 'f':
+				printf("%f%s", va_arg(ap, double), spac);
+				break;
+			case 's':
+				str = va_arg(ap, char *);
+				if (str == NULL)
+					printf("(nil)");
+				printf("%s%s", str, spac);
+				break;
 		}
-		sep = sep2;
-		i++;
+		n++;
 	}
 	printf("\n");
-	va_end(anyArgs);
+	va_end(ap);
 }
